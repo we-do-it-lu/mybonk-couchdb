@@ -67,12 +67,26 @@
     }; 
   };
 
+
+  # Looks like this is a workaround required to run hardened node (?)
+  services.logrotate.checkConfig = true;
+
+  # Use this setting 'loose' because strict reverse path filtering breaks Tailscale exit node use and some subnet routing setups
+  networking.firewall.checkReversePath = "loose";
+  networking.networkmanager.enable = true;
+
+
+  # Enable tailscale
+  services.tailscale.enable = true;
+  # Tell the firewall to implicitly trust packets routed over Tailscale:
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
+
   # Add and configure other services you need, here CouchDB
-  # services.couchdb = {
-  #     enable = true;
-  #     adminUser = "FIXME";
-  #     adminPass = "FIXME";
-  # };
+  services.couchdb = {
+       enable = true;
+       adminUser = "FIXME";
+       adminPass = "FIXME_try_and_guess_me";
+  };
 
   environment.systemPackages = map lib.lowPrio [
     pkgs.curl
