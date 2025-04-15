@@ -25,7 +25,7 @@ Any feedback is welcome.
 ### STEP 1
 On any NixOS system clone the present repository:
 ```
-$ git clone https://github.com/we-do-i/mybonk-couchdb.git
+$ git clone https://github.com/we-do-it-lu/mybonk-couchdb.git
 $ cd mybonk-couchdb
 ````
 
