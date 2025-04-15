@@ -23,7 +23,7 @@ Any feedback is welcome.
 
 
 ### STEP 1
-On any NixOS system (or at least any system having Nix, the package manager, installed) clone the present repository:
+On any NixOS system clone the present repository:
 ```
 $ git clone https://github.com/we-do-i/mybonk-couchdb.git
 $ cd mybonk-couchdb
@@ -51,19 +51,3 @@ Your target server is now running couchdb.
 
 Now you can configure your Obsidan client to use you couchdb in the back-end!
 
-Exercise yourself connecting and diconnecting to you node using the following commands:
-
-#### mybonk-term-open.sh
-- Allows you to open a preconfigured tmux session with MYBONK. 
-- Use the option `--help` to see all that is possible.
-```
-$ ./mybonk-term-open.sh operator@178.156.170.26 --remote-dir mybonk
-```
-- The option `--remote-dir`is very important here, it tells the script where to find the tmuxinator settings, typically the directory where you cloned the repository (in this example it is `mybonk`). It is not needed if you run the script locally (without the optional `--remote-dir` parameter).
-
-#### mybonk-term-close.sh
-- Kill the tmux session with MYBONK. 
-- Use the option `--help` to see all that is possible.
-```
-./mybonk-term-close.sh operator@178.156.170.26
-```
