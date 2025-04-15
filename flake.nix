@@ -55,7 +55,7 @@
         system = "x86_64-linux";
         modules = [
           {
-            networking.hostName = "generic";
+            networking.hostName = "mybonk-couchdb";
           }
           disko.nixosModules.disko
           ./configuration.nix

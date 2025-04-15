@@ -27,10 +27,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Use this setting 'loose' because strict reverse path filtering breaks Tailscale exit node use and some subnet routing setups
-  networking.firewall.checkReversePath = "loose";
-  networking.networkmanager.enable = true;
-  
   # Set your time zone.
   time.timeZone = "Europe/Brussels"; # FIXME: Adjust for your timezone.
 
@@ -73,9 +69,6 @@
   networking.firewall.checkReversePath = "loose";
   networking.networkmanager.enable = true;
 
-
-  # Tell the firewall to implicitly trust packets routed over Tailscale:
-  networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
   # Add and configure other services you need, here CouchDB
   services.couchdb = {
