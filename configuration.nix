@@ -68,16 +68,12 @@
   };
 
 
-  # Looks like this is a workaround required to run hardened node (?)
-  services.logrotate.checkConfig = true;
 
   # Use this setting 'loose' because strict reverse path filtering breaks Tailscale exit node use and some subnet routing setups
   networking.firewall.checkReversePath = "loose";
   networking.networkmanager.enable = true;
 
 
-  # Enable tailscale
-  services.tailscale.enable = true;
   # Tell the firewall to implicitly trust packets routed over Tailscale:
   networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
@@ -109,6 +105,7 @@
   users.users.root.openssh.authorizedKeys.keys = [
     # change this to your ssh key
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCuGp2f5FDhoq9tB+WuY/LKYBGSsDE5C2aKMd8zkjM/lVhsOxwd1BUuqiZ8L5m1IYRGNh5ewnYH1om9RTbU4ngxyW58LfXZ/RYNq52/ZtOqpQq6Pw6IH5YjG3qBGitN4vg1ILQF02Kw+tWlPsJ2H3a8VNGOOUNlAO0FB3n2O4MPGeCVM7h/SgjUGFfrX+stVxeH9oFzXR82dZT0I3hzpm6Kl1DDMnbv+eTUvCNgPT8w3w3HOCFxa2nLz61XMXqcW2sO8Onn0/WqZC7NC7G7Fx0VMY+tguoEySUCRIZSCkvQeZDypj0CFoYs9ohVWfqh2wl7x1eoow/RAGSQ+O4DgpLv2TNHCVJB8x12igczMhgM/F21bDOZoh2wkwk5Y8JbBUaPqQ0YEvrniuR7ZbZCP39V0VvodjNzlPvFb1o0fHrXeHzaHJ5XJBeM2s6bqKuvr5wKLt4NUT5dQGZcWl2gGmaAn7qcCKVJsq0zppEAdaRJ6soFRd8vM3G7jzNNGxusUYE= operator@mybonk-jay4"
+    "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAAVHSZJMrqBsloU1fT/OdnEwQq5D85dLjBkw3V+P3EoGTog9vnOx+V+36z+BGVY0J2vrlEQTlS4hjF1ELZozrtAqQBavSvfnApLCJkflPq0dA6P00wU6HNjwngK/GlqTk5glUOJS0mvkRW3qhBEmej42YWWgu8Ao/iXgntrEDAhzwhm4A== operator@generic"
   ];
 
 
