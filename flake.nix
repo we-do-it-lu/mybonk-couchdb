@@ -59,6 +59,7 @@
           }
           disko.nixosModules.disko
           ./configuration.nix
+          ./couchdb.nix
           ./hardware-configuration.nix
         ];
       };

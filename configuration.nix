@@ -8,8 +8,11 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
+    #imports = lib.optional (builtins.pathExists ./do-userdata.nix) ./do-userdata.nix ++ 
+    (fetchTarball { url="https://github.com/msteen/nixos-vscode-server/tarball/master"; sha256="09j4kvsxw1d5dvnhbsgih0icbrxqv90nzf0b589rb5z6gnzwjnqf"; } )
     ./disk-config.nix
   ];
+
   boot.loader.grub = {
     # no need to set devices, disko will add all devices that have a EF02 partition to the list already
     # devices = [ ];
@@ -26,6 +29,9 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # Enable vscode server (this allows to connect remotly from vscode).
+  services.vscode-server.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Brussels"; # FIXME: Adjust for your timezone.
@@ -70,12 +76,6 @@
   networking.networkmanager.enable = true;
 
 
-  # Add and configure other services you need, here CouchDB
-  services.couchdb = {
-       enable = true;
-       adminUser = "FIXME";
-       adminPass = "FIXME_try_and_guess_me";
-  };
 
   environment.systemPackages = map lib.lowPrio [
     pkgs.curl
@@ -93,6 +93,7 @@
     pkgs.btop
     pkgs.glances
     pkgs.geekbench
+    pkgs.deno # To be moved to module (used by Obsidian Livesync install script)
   ];
 
   users.users.root.openssh.authorizedKeys.keys = [
